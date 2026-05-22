@@ -1,2 +1,7 @@
 # Auto detect text files and perform LF normalization
 * text=auto
+
+# Ignore PyInstaller generated artifacts in GitHub language statistics.
+build/** linguist-generated=true
+dist/** linguist-generated=true
+*.spec linguist-generated=true
