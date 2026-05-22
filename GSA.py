@@ -5,6 +5,8 @@ from gerador import gerarSenha
 
 ##--------------------------------------------------------------------------
 
+senha_atual = ""
+
 
 ##------------##
 def resource_path(relative_path):
@@ -19,6 +21,8 @@ def resource_path(relative_path):
 
 
 def pegar_valor():
+    global senha_atual
+
     valor = tam.get()
 
     lista = []
@@ -41,11 +45,22 @@ def pegar_valor():
 
     if "S" in lista:
         texto = gerarSenha(valor, lista[0], lista[1], lista[2], lista[3])
+        senha_atual = texto
         label_resultado.config(text=texto, fg=cor_texto)
 
     else:
+        senha_atual = ""
         texto = "Defina as opções!"
         label_resultado.config(text=texto, fg="#b42318")
+
+
+def copiar_senha():
+    if senha_atual:
+        janela.clipboard_clear()
+        janela.clipboard_append(senha_atual)
+        label_copia.config(text="Senha copiada!", fg="#1a7f37")
+    else:
+        label_copia.config(text="Gere uma senha primeiro", fg="#b42318")
 
 
 ##--------------------------------------------------------------------------
@@ -216,8 +231,19 @@ label_resultado = tk.Label(
     height=2,
     relief="groove",
     bd=2,
+    cursor="hand2",
 )
 label_resultado.grid(row=13, column=0, pady=(0, 8))
+label_resultado.bind("<Button-1>", lambda event: copiar_senha())
+
+label_copia = tk.Label(
+    janela,
+    text="Clique na senha para copiar automaticamente",
+    bg=cor_fundo,
+    fg=cor_secundaria,
+    font=("Arial", 8, "bold"),
+)
+label_copia.grid(row=14, column=0, pady=(0, 8))
 
 label1 = tk.Label(
     janela,
@@ -226,6 +252,6 @@ label1 = tk.Label(
     fg=cor_secundaria,
     font=("Arial", 8),
 )
-label1.grid(row=14, column=0, padx=16, sticky="w")
+label1.grid(row=15, column=0, padx=16, sticky="w")
 
 janela.mainloop()

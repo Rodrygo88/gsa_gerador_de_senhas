@@ -8,6 +8,7 @@ O projeto permite escolher o tamanho da senha e quais tipos de caracteres serao 
 
 - Interface grafica simples e leve
 - Geracao de senhas com 4, 8 ou 12 caracteres
+- Copia automatica ao clicar na senha gerada
 - Opcoes para incluir:
   - Letras maiusculas
   - Letras minusculas
@@ -43,6 +44,7 @@ Depois escolha:
 1. O tamanho da senha
 2. Os tipos de caracteres
 3. Clique em `GERAR`
+4. Clique na senha gerada para copiar automaticamente
 
 A senha sera exibida na area de resultado.
 
